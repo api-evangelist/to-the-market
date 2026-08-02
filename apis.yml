@@ -1,7 +1,16 @@
 aid: to-the-market
 name: TO THE MARKET
-description: TO THE MARKET is a company surfaced as a portfolio company of techstars and added to the
-  API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: >-
+  TO THE MARKET is a mission-driven commerce company that combines TRACERA
+  supply-chain software with a curated catalog of "Global Good" sustainable,
+  ethically sourced products, delivering verified impact, compliance, and
+  transparency to buyers and enterprise sourcing teams. Its Shopify-powered
+  storefront at tothemarket.com exposes a native agent-commerce surface: a
+  Universal Commerce Protocol (UCP) merchant profile at /.well-known/ucp and a
+  hosted Model Context Protocol (MCP) endpoint, letting AI shopping agents
+  discover the catalog, build carts, and run buyer-approved checkout. Buyer and
+  customer actions authenticate through the Shopify Customer Account API over
+  OAuth2/OpenID Connect.
 url: https://raw.githubusercontent.com/api-evangelist/to-the-market/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -9,17 +18,89 @@ x-backed-by:
 - techstars
 x-tier: stub
 x-tier-reason: portfolio-lead
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-21'
+image: https://tothemarket.com/cdn/shop/files/logo.png
 tags:
 - Company
-apis: []
+- Commerce
+- Ecommerce
+- Sustainability
+- Supply Chain
+- Agent Commerce
+- Shopify
+- MCP
+apis:
+- name: TO THE MARKET Agent Commerce (UCP / MCP)
+  description: >-
+    Agent-driven commerce surface for the TO THE MARKET store, implementing the
+    Universal Commerce Protocol over a hosted MCP endpoint. Agents can search the
+    catalog, create carts, and run buyer-approved checkout; read-only browsing of
+    products and collections needs no authentication.
+  humanURL: https://tothemarket.com/
+  baseURL: https://tothemarket.com/api/ucp/mcp
+  properties:
+  - type: MCPServer
+    url: mcp/to-the-market-mcp.yml
+  - type: LLMsTxt
+    url: llms/to-the-market-llms.txt
+  - type: Authentication
+    url: authentication/to-the-market-authentication.yml
+  - type: OAuthScopes
+    url: scopes/to-the-market-scopes.yml
+  - type: Conventions
+    url: conventions/to-the-market-conventions.yml
+  - type: Conformance
+    url: conformance/to-the-market-conformance.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: MCPServer
+  url: mcp/to-the-market-mcp.yml
+- type: WellKnown
+  url: well-known/to-the-market-well-known.yml
+- type: LLMsTxt
+  url: llms/to-the-market-llms.txt
+- type: Authentication
+  url: authentication/to-the-market-authentication.yml
+- type: OAuthScopes
+  url: scopes/to-the-market-scopes.yml
+- type: Conventions
+  url: conventions/to-the-market-conventions.yml
+- type: Conformance
+  url: conformance/to-the-market-conformance.yml
+- type: DomainSecurity
+  url: security/to-the-market-domain-security.yml
+- type: PrivacyPolicy
+  url: https://tothemarket.com/policies/privacy-policy
+- type: TermsOfService
+  url: https://tothemarket.com/policies/terms-of-service
+- type: SignUp
+  url: https://tothemarket.com/pages/wholesale-account-sign-up
+- type: Login
+  url: https://tothemarket.com/account/login
+- type: Support
+  url: https://tothemarket.com/pages/contact-us
 - type: Website
   url: https://tothemarket.com/
+x-enrichment:
+  date: '2026-07-21'
+  status: enriched
+  artifacts_added: 11
+  pass: local-v1

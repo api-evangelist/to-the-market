@@ -1,0 +1,23 @@
+generated: '2026-07-21'
+method: searched
+source: live probe of https://tothemarket.com/.well-known/*
+host: https://tothemarket.com
+documents:
+- path: /.well-known/openid-configuration
+  status: 200
+  file: to-the-market-openid-configuration.json
+  note: Shopify Customer Account API OIDC discovery (issuer shopify.com/authentication/1239679049)
+- path: /.well-known/oauth-authorization-server
+  status: 200
+  file: to-the-market-oauth-authorization-server.json
+  note: RFC 8414 authorization-server metadata (mirrors the OIDC config)
+- path: /.well-known/ucp
+  status: 200
+  file: to-the-market-ucp.json
+  note: Universal Commerce Protocol merchant profile (backing store ttm-b2b.myshopify.com)
+- path: /.well-known/security.txt
+  status: 404
+- path: /.well-known/api-catalog
+  status: 404
+- path: /.well-known/ai-plugin.json
+  status: 404

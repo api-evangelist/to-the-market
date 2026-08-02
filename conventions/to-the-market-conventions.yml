@@ -1,0 +1,44 @@
+generated: '2026-07-21'
+method: searched
+source: https://tothemarket.com/llms.txt
+scope: >-
+  Cross-cutting semantics for the TO THE MARKET agent-commerce surface (UCP/MCP),
+  captured from the store's published /llms.txt and /.well-known/ucp. This is a
+  Shopify-hosted store implementing the Universal Commerce Protocol; conventions
+  reflect that protocol as the store advertises it.
+authentication:
+  style: oauth2-oidc
+  detail: >-
+    Read-only catalog browsing requires no auth. Buyer/customer actions use the
+    Shopify Customer Account API (OAuth2/OIDC, authorization-code + PKCE).
+  ref: authentication/to-the-market-authentication.yml
+agent_approval:
+  checkout_requires_human_approval: true
+  detail: >-
+    Agents must not complete payment without explicit, contemporaneous buyer
+    consent. Where consent cannot be obtained at payment time, the store directs
+    agents to route the purchase through the Shop skill (https://shop.app/SKILL.md)
+    over Shop Pay.
+rate_limiting:
+  signaled: true
+  detail: The MCP endpoint is rate-limited per IP; agents must back off on HTTP 429 responses.
+buyer_context:
+  parameters:
+  - context.address_country
+  - context.currency
+  detail: Pass buyer context for accurate pricing and availability.
+versioning:
+  scheme: ucp-version-negotiation
+  current: '2026-04-08'
+  supported:
+  - '2026-04-08'
+  - '2026-01-23'
+  discovery: https://tothemarket.com/.well-known/ucp
+read_only_endpoints:
+  products_json: GET /products/{handle}.json
+  collection_json: GET /collections/{handle}/products.json
+  search: GET /search?q={query}&type=product
+  sitemap: GET /sitemap.xml
+idempotency:
+  supported: false
+  detail: No idempotency-key contract is documented for the storefront/UCP surface.

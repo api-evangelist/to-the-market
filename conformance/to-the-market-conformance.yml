@@ -1,0 +1,29 @@
+generated: '2026-07-21'
+method: searched
+source: >-
+  https://tothemarket.com/.well-known/openid-configuration,
+  https://tothemarket.com/.well-known/ucp, https://tothemarket.com/llms.txt
+standards:
+- id: oauth2
+  conforms: true
+  evidence: OIDC/RFC8414 metadata advertises authorization_code + refresh_token grants and token endpoint.
+- id: oidc
+  conforms: true
+  evidence: /.well-known/openid-configuration present with issuer, jwks_uri, RS256 id tokens.
+- id: oauth2-pkce
+  conforms: true
+  evidence: code_challenge_methods_supported includes S256.
+- id: rfc8414-oauth-authorization-server-metadata
+  conforms: true
+  evidence: /.well-known/oauth-authorization-server returns 200 with authorization-server metadata.
+- id: ucp
+  conforms: true
+  evidence: /.well-known/ucp advertises UCP versions 2026-04-08 and 2026-01-23 with shopping services and capabilities.
+- id: mcp
+  conforms: true
+  evidence: UCP profile declares an MCP transport endpoint at /api/ucp/mcp with an OpenRPC schema.
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: /.well-known/security.txt returns 404.
+- id: rfc9457-problem-details
+  conforms: false

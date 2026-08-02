@@ -1,0 +1,37 @@
+generated: '2026-07-21'
+method: searched
+status: published
+source: https://tothemarket.com/llms.txt
+discovery: https://tothemarket.com/.well-known/ucp
+notes: >-
+  TO THE MARKET is a Shopify store (backing store ttm-b2b.myshopify.com) that
+  natively implements the Universal Commerce Protocol (UCP, https://ucp.dev) for
+  agent-driven commerce. UCP exposes a hosted MCP endpoint over HTTP. Tools are
+  documented verbatim in the store's /llms.txt and their schemas are published at
+  ucp.dev (mcp.openrpc.json). The MCP endpoint requires a valid agent profile URI
+  on tools/list (returns -32001 UCP discovery failed without one); tool inventory
+  below is taken from the published /llms.txt agent flow, not fabricated.
+server:
+  name: to-the-market-ucp
+  transport: http
+  url: https://tothemarket.com/api/ucp/mcp
+  protocol: ucp
+  ucp_versions:
+  - '2026-04-08'
+  - '2026-01-23'
+  openrpc_schema: https://ucp.dev/2026-04-08/services/shopping/mcp.openrpc.json
+auth:
+  human_approval_required_for_checkout: true
+  read_only_browsing: no-auth
+  oauth: well-known/to-the-market-openid-configuration.json
+tools:
+- name: search_catalog
+  description: Search the store catalog for products matching the buyer's intent.
+- name: create_cart
+  description: Create a cart and add desired items.
+- name: create_checkout
+  description: Start the purchase (checkout) flow.
+- name: update_checkout
+  description: Set shipping address and method on an in-progress checkout.
+- name: complete_checkout
+  description: Finalize the checkout. Buyer must explicitly approve payment.

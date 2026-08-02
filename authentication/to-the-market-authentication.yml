@@ -1,0 +1,36 @@
+generated: '2026-07-21'
+method: searched
+source: https://tothemarket.com/.well-known/openid-configuration
+docs: https://shopify.dev/docs/api/customer
+summary:
+  types:
+  - oauth2
+  - openIdConnect
+  oauth2_flows:
+  - authorizationCode
+  notes: >-
+    Authenticated access to buyer/customer data is via the Shopify Customer
+    Account API using OAuth 2.0 / OpenID Connect (authorization-code flow with
+    PKCE, S256). Read-only catalog browsing over the UCP/MCP surface requires no
+    authentication; checkout completion requires contemporaneous buyer approval.
+schemes:
+- name: ShopifyCustomerAccountOIDC
+  type: openIdConnect
+  openIdConnectUrl: https://tothemarket.com/.well-known/openid-configuration
+  issuer: https://shopify.com/authentication/1239679049
+  authorization_endpoint: https://shopify.com/authentication/1239679049/oauth/authorize
+  token_endpoint: https://shopify.com/authentication/1239679049/oauth/token
+  end_session_endpoint: https://shopify.com/authentication/1239679049/logout
+  jwks_uri: https://shopify.com/authentication/1239679049/.well-known/jwks.json
+  grant_types:
+  - authorization_code
+  - refresh_token
+  - urn:ietf:params:oauth:grant-type:jwt-bearer
+  pkce_methods:
+  - S256
+  id_token_signing_alg:
+  - RS256
+  token_endpoint_auth_methods:
+  - client_secret_basic
+  sources:
+  - well-known/to-the-market-openid-configuration.json
