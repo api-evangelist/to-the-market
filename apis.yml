@@ -85,6 +85,9 @@ apis:
     url: conventions/to-the-market-conventions.yml
   - type: Conformance
     url: conformance/to-the-market-conformance.yml
+  x-surface: platform-generated
+  x-platform: shopify
+  x-platform-surface: ucp
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
